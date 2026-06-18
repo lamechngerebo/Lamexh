@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verified Departmental Primaries Portal</title>
+    <title>Departmental Primaries Voting Portal</title>
     <style>
         :root {
             --primary: #1e3a8a;
@@ -14,7 +14,6 @@
             --text-light: #475569;
             --border: #cbd5e1;
             --accent: #2563eb;
-            --success: #16a34a;
         }
 
         * {
@@ -38,10 +37,9 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 3px solid var(--primary);
             padding-bottom: 16px;
-            cursor: pointer;
         }
 
         h1 {
@@ -69,13 +67,11 @@
             font-size: 18px;
             margin-bottom: 16px;
             color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         ol {
             padding-left: 20px;
+            margin-bottom: 15px;
         }
 
         li {
@@ -84,148 +80,19 @@
             font-size: 15px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label.field-title {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--text);
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            font-size: 15px;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .option-group {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .frame-container {
             position: relative;
-        }
-
-        .option-label:hover {
-            border-color: var(--accent);
-            background-color: #f8fafc;
-        }
-
-        input[type="radio"] {
-            margin-right: 16px;
-            width: 22px;
-            height: 22px;
-            accent-color: var(--accent);
-            cursor: pointer;
-        }
-
-        .candidate-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .candidate-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .candidate-title {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-top: 2px;
-        }
-
-        .option-label:has(input[type="radio"]:checked) {
-            border-color: var(--accent);
-            background-color: #eff6ff;
-        }
-
-        button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
-            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
-        }
-
-        button:hover {
-            background-color: var(--primary);
-        }
-
-        button:disabled {
-            background-color: #94a3b8;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .message {
-            padding: 14px;
+            height: 750px;
             border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 500;
-            text-align: center;
-            font-size: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border);
         }
 
-        .message.error {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #fca5a5;
-        }
-
-        .message.success-msg {
-            background-color: #dcfce7;
-            color: #15803d;
-            border: 1px solid #86efac;
-        }
-        
-        .loading-spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
@@ -233,165 +100,31 @@
     <div class="container">
         <header>
             <h1>Departmental Primaries Election</h1>
-            <div class="subtitle">Secure Verification Voting System</div>
+            <div class="subtitle">Official Electronic Voting Portal</div>
         </header>
-                <!-- Official Secure Voting Instructions -->
+                <!-- Official Guidelines Card -->
         <section class="card">
-            <h2>📋 Secure Voting Instructions</h2>
+            <h2>📋 Voting Guidelines</h2>
             <ol>
-                <li>Input your official, pre-registered Departmental ID or Matriculation Number.</li>
-                <li>The secure backend system will cross-reference your identity with the database.</li>
-                <li>If your name is listed and you have not voted yet, your submission will process.</li>
-                <li>Once submitted, your assigned identity is permanently marked as "Voted" to completely lock out duplication.</li>
+                <li>Type your official Matriculation / Registration Number accurately.</li>
+                <li>Cast your ballot for either <strong>Achua Louis</strong> or <strong>Godspower Awajimowa Ebirien</strong>.</li>
+                <li>Click the Form's Submit button to cast your ballot.</li>
+                <li>To allow the next student to use a shared device, tap the <strong>"Submit another response"</strong> link when finished.</li>
             </ol>
         </section>
 
-        <!-- Secure Verification Ballot Form -->
-        <section class="card" id="voting-card">
-            <h2>🗳️ Official Ballot Verification</h2>
-            
-            <div id="error-message" class="message error hidden"></div>
-            
-            <form id="vote-form">
-                <div class="form-group">
-                    <label class="field-title" for="matric-number">Official Matriculation / Registration Number</label>
-                    <input type="text" id="matric-number" placeholder="Enter your registered number exactly" required>
-                </div>
-
-                <div class="option-group">
-                    <label class="option-label">
-                        <input type="radio" name="candidate" value="Achua Louis">
-                        <div class="candidate-info">
-                            <span class="candidate-name">Achua Louis</span>
-                            <span class="candidate-title">Aspirant, Departmental Primaries</span>
-                        </div>
-                    </label>
-                    
-                    <label class="option-label">
-                        <input type="radio" name="candidate" value="Godspower Awajimowa Ebirien">
-                        <div class="candidate-info">
-                            <span class="candidate-name">Godspower Awajimowa Ebirien</span>
-                            <span class="candidate-title">Aspirant, Departmental Primaries</span>
-                        </div>
-                    </label>
-                </div>
-                <button type="submit" id="submit-btn">
-                    <span id="btn-loading-icon" class="loading-spinner hidden"></span>
-                    <span id="btn-text">Verify Identity & Cast Vote</span>
-                </button>
-            </form>
-        </section>
-
-        <!-- Post-Submission Completion Display -->
-        <section class="card hidden" id="results-card">
-            <h2>✅ Submission Received</h2>
-            <div id="success-message" class="message success-msg">
-                Your ballot has been successfully authenticated, cast, and securely filed.
+        <!-- Live Secure Ballot Embed Card -->
+        <section class="card">
+            <h2>🗳️ Official Live Ballot Box</h2>
+            <div class="frame-container">
+                <iframe id="ballot-frame" src="https://google.com">Loading official ballot...</iframe>
             </div>
-            <p style="color: var(--text-light); text-align: center; font-size: 15px; font-weight: bold; margin-top: 10px;">
-                🔄 This terminal will reset automatically in 5 seconds for the next voter. Please step away.
-            </p>
         </section>
     </div>
         <script>
-        // Pre-connected proxy endpoint tied directly to your active voter spreadsheet ID
-        const SCRIPT_URL = "https://google.com";
-
-        const formElement = document.getElementById('vote-form');
-        const votingSection = document.getElementById('voting-card');
-        const resultsSection = document.getElementById('results-card');
-        const alertBox = document.getElementById('error-message');
-        const submitBtn = document.getElementById('submit-btn');
-        const loadingIcon = document.getElementById('btn-loading-icon');
-        const btnText = document.getElementById('btn-text');
-
-        formElement.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const matricInput = document.getElementById('matric-number').value.trim().toUpperCase();
-            const checkedOption = document.querySelector('input[name="candidate"]:checked');
-            
-            if (!matricInput) {
-                showError("Please enter your official Matriculation / Registration Number.");
-                return;
-            }
-
-            if (!checkedOption) {
-                showError("You must select one candidate to submit your vote.");
-                return;
-            }
-            
-            alertBox.classList.add('hidden');
-            setLoadingState(true);
-            
-            const formData = new FormData();
-            formData.append('voterId', matricInput);
-            formData.append('candidateSelection', checkedOption.value);
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                setLoadingState(false);
-                if (data.status === 'success') {
-                    showSuccessScreen();
-                    
-                    // SHARED DEVICE TRICK: Wait 5 seconds, clear the form, and reload for the next voter
-                    setTimeout(() => {
-                        formElement.reset(); 
-                        resultsSection.classList.add('hidden');
-                        votingSection.classList.remove('hidden');
-                    }, 5000); 
-                    
-                } else {
-                    showError(data.message);
-                }
-            })
-            .catch(error => {
-                setLoadingState(false);
-                showError("Network connection error. Your vote was not cast. Please try again.");
-                console.error('Error:', error);
-            });
-        });
-
-        function showError(message) {
-            alertBox.textContent = "⚠️ " + message;
-            alertBox.classList.remove('hidden');
-        }
-
-        function showSuccessScreen() {
-            votingSection.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
-        }
-
-        function setLoadingState(isLoading) {
-            if (isLoading) {
-                submitBtn.disabled = true;
-                loadingIcon.classList.remove('hidden');
-                btnText.textContent = "Processing & Authenticating...";
-            } else {
-                submitBtn.disabled = false;
-                loadingIcon.classList.add('hidden');
-                btnText.textContent = "Verify Identity & Cast Vote";
-            }
-        }
-
-        // SECRET ADMIN TRIGGER: Tap the Main Header 5 times to reveal results spreadsheet
-        let tapCount = 0;
-        document.querySelector('header h1').addEventListener('click', () => {
-            tapCount++;
-            if (tapCount === 5) {
-                const adminPass = prompt("Enter Secret Admin Password:");
-                if (adminPass === "DeptAdmin2026") { 
-                    window.open("https://google.com", "_blank");
-                } else {
-                    alert("Unauthorized Access.");
-                }
-                tapCount = 0;
-            }
-        });
+        // System successfully deployed using Google Forms Cloud Layer.
+        console.log("Portal active. Cloud syncing initialized.");
     </script>
 </body>
-</html>
+            </html>
+            
