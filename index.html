@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departmental Primaries Voting Portal</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #172554;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-light: #475569;
+            --border: #cbd5e1;
+            --accent: #2563eb;
+            --success: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 16px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label.field-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .option-label:hover {
+            border-color: var(--accent);
+            background-color: #f8fafc;
+        }
+
+        input[type="radio"] {
+            margin-right: 16px;
+            width: 22px;
+            height: 22px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .candidate-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .candidate-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .candidate-title {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .option-label:has(input[type="radio"]:checked) {
+            border-color: var(--accent);
+            background-color: #eff6ff;
+        }
+
+        button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        button:hover {
+            background-color: var(--primary);
+        }
+
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-item {
+            margin-bottom: 20px;
+        }
+
+        .result-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .progress-bar {
+            background-color: #e2e8f0;
+            border-radius: 6px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background-color: var(--success);
+            height: 100%;
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .message {
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .message.error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fca5a5;
+        }
+
+        .message.success-msg {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Departmental Primaries Election</h1>
+            <div class="subtitle">Official Electronic Voting Ballot</div>
+  </header>
+          <!-- Official Voting Instructions -->
+        <section class="card">
+            <h2>📋 Voting Instructions</h2>
+            <ol>
+                <li>Enter your Matriculation / Registration Number to verify identity.</li>
+                <li>Carefully review both aspirants listed below.</li>
+                <li>Mark the radio button next to your preferred candidate.</li>
+                <li>Verify your selection before clicking submission.</li>
+                <li>Click <strong>"Cast My Official Vote"</strong> to submit.</li>
+                <li>Each student/member is permitted to vote exactly once.</li>
+            </ol>
+        </section>
+
+        <!-- Voting Interface Form -->
+        <section class="card" id="voting-card">
+            <h2>🗳️ Official Ballot</h2>
+            
+            <div id="error-message" class="message error hidden"></div>
+            
+            <form id="vote-form">
+                <!-- Added Matriculation/Registration Number field -->
+                <div class="form-group">
+                    <label class="field-title" for="matric-number">Matriculation / Registration Number</label>
+                    <input type="text" id="matric-number" placeholder="e.g., DEPT/2024/001" required>
+                </div>
+
+                <div class="option-group">
+                    <label class="option-label">
+                        <input type="radio" name="candidate" value="Achua Louis">
+                        <div class="candidate-info">
+                            <span class="candidate-name">Achua Louis</span>
+                            <span class="candidate-title">Aspirant, Departmental Primaries</span>
+                        </div>
+                    </label>
+                    
+                    <label class="option-label">
+                        <input type="radio" name="candidate" value="Godspower Awajimowa Ebirien">
+                        <div class="candidate-info">
+                            <span class="candidate-name">Godspower Awajimowa Ebirien</span>
+                            <span class="candidate-title">Aspirant, Departmental Primaries</span>
+                        </div>
+                    </label>
+                </div>
+                <button type="submit" id="submit-btn">Cast My Official Vote</button>
+            </form>
+        </section>
+
+        <!-- Realtime Live Tally Display -->
+        <section class="card hidden" id="results-card">
+            <h2>📊 Live Primary Results</h2>
+            <div id="success-message" class="message success-msg">
+                Success! Your vote has been verified and safely counted.
+            </div>
+            
+            <ul class="results-list">
+                <li class="result-item">
+                    <div class="result-info">
+                        <span>Achua Louis</span>
+                        <span id="count-Louis">0 votes (0%)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="bar-Louis"></div>
+                    </div>
+                </li>
+                <li class="result-item">
+                    <div class="result-info">
+                        <span>Godspower Awajimowa Ebirien</span>
+                        <span id="count-Ebirien">0 votes (0%)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="bar-Ebirien"></div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+                      </div>
+      <script>
+        // Resetting mock database counts back to 0 for a clean election
+        const databaseTallies = {
+            'Achua Louis': 0,
+            'Godspower Awajimowa Ebirien': 0
+        };
+
+        const formElement = document.getElementById('vote-form');
+        const votingSection = document.getElementById('voting-card');
+        const resultsSection = document.getElementById('results-card');
+        const alertBox = document.getElementById('error-message');
+
+        formElement.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const matricInput = document.getElementById('matric-number').value.trim();
+            const checkedOption = document.querySelector('input[name="candidate"]:checked');
+            
+            // Validation 1: Check identity input field
+            if (!matricInput) {
+                alertBox.textContent = "Error: Please enter your Matriculation or Registration Number.";
+                alertBox.classList.remove('hidden');
+                return;
+            }
+
+            // Validation 2: Check ballot selection
+            if (!checkedOption) {
+                alertBox.textContent = "Error: You must pick a candidate before submitting your ballot.";
+                alertBox.classList.remove('hidden');
+                return;
+            }
+            
+            alertBox.classList.add('hidden');
+            
+            // Save data to database state
+            const selectedCandidate = checkedOption.value;
+            databaseTallies[selectedCandidate]++;
+            
+            // Execute view updates & state transition
+            refreshVisualTallies();
+            votingSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+        });
+
+        function refreshVisualTallies() {
+            const sumTotal = databaseTallies['Achua Louis'] + databaseTallies['Godspower Awajimowa Ebirien'];
+            
+            // Candidate 1: Achua Louis calculations
+            const scoreLouis = databaseTallies['Achua Louis'];
+            const percentLouis = sumTotal > 0 ? Math.round((scoreLouis / sumTotal) * 100) : 0;
+            document.getElementById('count-Louis').textContent = `${scoreLouis} vote(s) (${percentLouis}%)`;
+            document.getElementById('bar-Louis').style.width = `${percentLouis}%`;
+
+            // Candidate 2: Godspower Awajimowa Ebirien calculations
+            const scoreEbirien = databaseTallies['Godspower Awajimowa Ebirien'];
+            const percentEbirien = sumTotal > 0 ? Math.round((scoreEbirien / sumTotal) * 100) : 0;
+            document.getElementById('count-Ebirien').textContent = `${scoreEbirien} vote(s) (${percentEbirien}%)`;
+            document.getElementById('bar-Ebirien').style.width = `${percentEbirien}%`;
+        }
+    </script>
+</body>
+</html>
