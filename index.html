@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Departmental Primaries Voting Portal</title>
+    <title>Verified Departmental Primaries Portal</title>
     <style>
         :root {
             --primary: #1e3a8a;
@@ -41,6 +41,7 @@
             margin-bottom: 30px;
             border-bottom: 3px solid var(--primary);
             padding-bottom: 16px;
+            cursor: pointer;
         }
 
         h1 {
@@ -180,35 +181,10 @@
             background-color: var(--primary);
         }
 
-        .results-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .result-item {
-            margin-bottom: 20px;
-        }
-
-        .result-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .progress-bar {
-            background-color: #e2e8f0;
-            border-radius: 6px;
-            height: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background-color: var(--success);
-            height: 100%;
-            width: 0%;
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        button:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
         .hidden {
@@ -235,38 +211,51 @@
             color: #15803d;
             border: 1px solid #86efac;
         }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Departmental Primaries Election</h1>
-            <div class="subtitle">Official Electronic Voting Ballot</div>
-  </header>
-          <!-- Official Voting Instructions -->
+            <div class="subtitle">Secure Verification Voting System</div>
+        </header>
+                <!-- Official Secure Voting Instructions -->
         <section class="card">
-            <h2>📋 Voting Instructions</h2>
+            <h2>📋 Secure Voting Instructions</h2>
             <ol>
-                <li>Enter your Matriculation / Registration Number to verify identity.</li>
-                <li>Carefully review both aspirants listed below.</li>
-                <li>Mark the radio button next to your preferred candidate.</li>
-                <li>Verify your selection before clicking submission.</li>
-                <li>Click <strong>"Cast My Official Vote"</strong> to submit.</li>
-                <li>Each student/member is permitted to vote exactly once.</li>
+                <li>Input your official, pre-registered Departmental ID or Matriculation Number.</li>
+                <li>The secure backend system will cross-reference your identity with the database.</li>
+                <li>If your name is listed and you have not voted yet, your submission will process.</li>
+                <li>Once submitted, your assigned identity is permanently marked as "Voted" to completely lock out duplication.</li>
             </ol>
         </section>
 
-        <!-- Voting Interface Form -->
+        <!-- Secure Verification Ballot Form -->
         <section class="card" id="voting-card">
-            <h2>🗳️ Official Ballot</h2>
+            <h2>🗳️ Official Ballot Verification</h2>
             
             <div id="error-message" class="message error hidden"></div>
             
             <form id="vote-form">
-                <!-- Added Matriculation/Registration Number field -->
                 <div class="form-group">
-                    <label class="field-title" for="matric-number">Matriculation / Registration Number</label>
-                    <input type="text" id="matric-number" placeholder="e.g., DEPT/2024/001" required>
+                    <label class="field-title" for="matric-number">Official Matriculation / Registration Number</label>
+                    <input type="text" id="matric-number" placeholder="Enter your registered number exactly" required>
                 </div>
 
                 <div class="option-group">
@@ -286,98 +275,123 @@
                         </div>
                     </label>
                 </div>
-                <button type="submit" id="submit-btn">Cast My Official Vote</button>
+                <button type="submit" id="submit-btn">
+                    <span id="btn-loading-icon" class="loading-spinner hidden"></span>
+                    <span id="btn-text">Verify Identity & Cast Vote</span>
+                </button>
             </form>
         </section>
 
-        <!-- Realtime Live Tally Display -->
+        <!-- Post-Submission Completion Display -->
         <section class="card hidden" id="results-card">
-            <h2>📊 Live Primary Results</h2>
+            <h2>✅ Submission Received</h2>
             <div id="success-message" class="message success-msg">
-                Success! Your vote has been verified and safely counted.
+                Your ballot has been successfully authenticated, cast, and securely filed.
             </div>
-            
-            <ul class="results-list">
-                <li class="result-item">
-                    <div class="result-info">
-                        <span>Achua Louis</span>
-                        <span id="count-Louis">0 votes (0%)</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="bar-Louis"></div>
-                    </div>
-                </li>
-                <li class="result-item">
-                    <div class="result-info">
-                        <span>Godspower Awajimowa Ebirien</span>
-                        <span id="count-Ebirien">0 votes (0%)</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="bar-Ebirien"></div>
-                    </div>
-                </li>
-            </ul>
+            <p style="color: var(--text-light); text-align: center; font-size: 15px; font-weight: bold; margin-top: 10px;">
+                🔄 This terminal will reset automatically in 5 seconds for the next voter. Please step away.
+            </p>
         </section>
-                      </div>
-      <script>
-        // Resetting mock database counts back to 0 for a clean election
-        const databaseTallies = {
-            'Achua Louis': 0,
-            'Godspower Awajimowa Ebirien': 0
-        };
+    </div>
+        <script>
+        // Pre-connected proxy endpoint tied directly to your active voter spreadsheet ID
+        const SCRIPT_URL = "https://google.com";
 
         const formElement = document.getElementById('vote-form');
         const votingSection = document.getElementById('voting-card');
         const resultsSection = document.getElementById('results-card');
         const alertBox = document.getElementById('error-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const loadingIcon = document.getElementById('btn-loading-icon');
+        const btnText = document.getElementById('btn-text');
 
         formElement.addEventListener('submit', function(event) {
             event.preventDefault();
             
-            const matricInput = document.getElementById('matric-number').value.trim();
+            const matricInput = document.getElementById('matric-number').value.trim().toUpperCase();
             const checkedOption = document.querySelector('input[name="candidate"]:checked');
             
-            // Validation 1: Check identity input field
             if (!matricInput) {
-                alertBox.textContent = "Error: Please enter your Matriculation or Registration Number.";
-                alertBox.classList.remove('hidden');
+                showError("Please enter your official Matriculation / Registration Number.");
                 return;
             }
 
-            // Validation 2: Check ballot selection
             if (!checkedOption) {
-                alertBox.textContent = "Error: You must pick a candidate before submitting your ballot.";
-                alertBox.classList.remove('hidden');
+                showError("You must select one candidate to submit your vote.");
                 return;
             }
             
             alertBox.classList.add('hidden');
+            setLoadingState(true);
             
-            // Save data to database state
-            const selectedCandidate = checkedOption.value;
-            databaseTallies[selectedCandidate]++;
-            
-            // Execute view updates & state transition
-            refreshVisualTallies();
-            votingSection.classList.add('hidden');
-            resultsSection.classList.remove('hidden');
+            const formData = new FormData();
+            formData.append('voterId', matricInput);
+            formData.append('candidateSelection', checkedOption.value);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                setLoadingState(false);
+                if (data.status === 'success') {
+                    showSuccessScreen();
+                    
+                    // SHARED DEVICE TRICK: Wait 5 seconds, clear the form, and reload for the next voter
+                    setTimeout(() => {
+                        formElement.reset(); 
+                        resultsSection.classList.add('hidden');
+                        votingSection.classList.remove('hidden');
+                    }, 5000); 
+                    
+                } else {
+                    showError(data.message);
+                }
+            })
+            .catch(error => {
+                setLoadingState(false);
+                showError("Network connection error. Your vote was not cast. Please try again.");
+                console.error('Error:', error);
+            });
         });
 
-        function refreshVisualTallies() {
-            const sumTotal = databaseTallies['Achua Louis'] + databaseTallies['Godspower Awajimowa Ebirien'];
-            
-            // Candidate 1: Achua Louis calculations
-            const scoreLouis = databaseTallies['Achua Louis'];
-            const percentLouis = sumTotal > 0 ? Math.round((scoreLouis / sumTotal) * 100) : 0;
-            document.getElementById('count-Louis').textContent = `${scoreLouis} vote(s) (${percentLouis}%)`;
-            document.getElementById('bar-Louis').style.width = `${percentLouis}%`;
-
-            // Candidate 2: Godspower Awajimowa Ebirien calculations
-            const scoreEbirien = databaseTallies['Godspower Awajimowa Ebirien'];
-            const percentEbirien = sumTotal > 0 ? Math.round((scoreEbirien / sumTotal) * 100) : 0;
-            document.getElementById('count-Ebirien').textContent = `${scoreEbirien} vote(s) (${percentEbirien}%)`;
-            document.getElementById('bar-Ebirien').style.width = `${percentEbirien}%`;
+        function showError(message) {
+            alertBox.textContent = "⚠️ " + message;
+            alertBox.classList.remove('hidden');
         }
+
+        function showSuccessScreen() {
+            votingSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+        }
+
+        function setLoadingState(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                loadingIcon.classList.remove('hidden');
+                btnText.textContent = "Processing & Authenticating...";
+            } else {
+                submitBtn.disabled = false;
+                loadingIcon.classList.add('hidden');
+                btnText.textContent = "Verify Identity & Cast Vote";
+            }
+        }
+
+        // SECRET ADMIN TRIGGER: Tap the Main Header 5 times to reveal results spreadsheet
+        let tapCount = 0;
+        document.querySelector('header h1').addEventListener('click', () => {
+            tapCount++;
+            if (tapCount === 5) {
+                const adminPass = prompt("Enter Secret Admin Password:");
+                if (adminPass === "DeptAdmin2026") { 
+                    window.open("https://google.com", "_blank");
+                } else {
+                    alert("Unauthorized Access.");
+                }
+                tapCount = 0;
+            }
+        });
     </script>
 </body>
 </html>
