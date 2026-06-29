@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rivers State College of Health Science - SUG</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header { background: #0a3d62; color: white; padding: 15px; text-align: center; }
+    nav { background: #145a86; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 10px; text-decoration: none; font-weight: bold; }
+    section { padding: 20px; }
+    footer { background: #0a3d62; color: white; text-align: center; padding: 10px; }
+    .card { background: #f4f4f4; padding: 15px; margin: 10px 0; border-radius: 8px; }
+    input, button { padding: 10px; margin: 5px 0; width: 100%; }
+    .hidden { display: none; }
+    .btn { background: #145a86; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body><header>
+  <h1>Student Union Government (SUG)</h1>
+  <p>Rivers State College of Health Science and Management Technology</p>
+</header><nav>
+  <a href="#about">About</a>
+  <a href="#leadership">Leadership</a>
+  <a href="#voting">Voting</a>
+  <a href="#contact">Contact</a>
+</nav><section id="about">
+  <h2>About the SUG</h2>
+  <p>The Student Union Government (SUG) was established in <strong>[Insert Year]</strong>.</p>
+</section><section id="leadership">
+  <h2>Leadership</h2>
+  <div class="card">President: [Name]</div>
+</section><!-- LOGIN PORTAL --><section id="login">
+  <h2>Student Login</h2>
+  <div class="card">
+    <input type="text" id="username" placeholder="Enter Matric Number">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button class="btn" onclick="login()">Login</button>
+    <p id="loginMsg"></p>
+  </div>
+</section><!-- VOTING SYSTEM --><section id="voting" class="hidden">
+  <h2>Voting Portal</h2>
+  <div class="card">
+    <p>Select your preferred candidate for SUG President:</p>
+    <input type="radio" name="vote" value="Candidate A"> Candidate A<br>
+    <input type="radio" name="vote" value="Candidate B"> Candidate B<br>
+    <input type="radio" name="vote" value="Candidate C"> Candidate C<br>
+    <button class="btn" onclick="submitVote()">Submit Vote</button>
+    <p id="voteMsg"></p>
+  </div>
+</section><section id="contact">
+  <h2>Contact</h2>
+  <p>Email: sug@school.com</p>
+</section><footer>
+  <p>&copy; 2026 SUG</p>
+</footer><script>
+  function login() {
+    const user = document.getElementById('username').value;
+    const pass = document.getElementById('password').value;
+
+    if (user === "student" && pass === "1234") {
+      document.getElementById('loginMsg').innerText = "Login successful";
+      document.getElementById('voting').classList.remove('hidden');
+    } else {
+      document.getElementById('loginMsg').innerText = "Invalid login details";
+    }
+  }
+
+  function submitVote() {
+    const votes = document.getElementsByName('vote');
+    let selected = null;
+
+    for (let v of votes) {
+      if (v.checked) {
+        selected = v.value;
+      }
+    }
+
+    if (selected) {
+      document.getElementById('voteMsg').innerText = "You voted for " + selected;
+    } else {
+      document.getElementById('voteMsg').innerText = "Please select a candidate";
+    }
+  }
+</script></body>
+</html>
