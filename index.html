@@ -1,86 +1,237 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rivers State College of Health Science - SUG</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; }
-    header { background: #0a3d62; color: white; padding: 15px; text-align: center; }
-    nav { background: #145a86; padding: 10px; text-align: center; }
-    nav a { color: white; margin: 10px; text-decoration: none; font-weight: bold; }
-    section { padding: 20px; }
-    footer { background: #0a3d62; color: white; text-align: center; padding: 10px; }
-    .card { background: #f4f4f4; padding: 15px; margin: 10px 0; border-radius: 8px; }
-    input, button { padding: 10px; margin: 5px 0; width: 100%; }
-    .hidden { display: none; }
-    .btn { background: #145a86; color: white; border: none; cursor: pointer; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngerebo Lamech Dimkpa | Student Leader & Portfolio</title>
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #172a45;
+            --accent: #64ffda;
+            --text-main: #ccd6f6;
+            --text-muted: #8892b0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(10, 25, 47, 0.95);
+            padding: 20px 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 120px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .image-wrapper {
+                margin: 0 auto;
+            }
+        }
+
+        .bio-content h1 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .title-badge {
+            display: inline-block;
+            background-color: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .bio-content p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .image-wrapper {
+            position: relative;
+            max-width: 320px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .grid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .card h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card ul {
+            list-style-type: none;
+        }
+
+        .card li {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .card li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            margin-top: 80px;
+        }
+    </style>
 </head>
-<body><header>
-  <h1>Student Union Government (SUG)</h1>
-  <p>Rivers State College of Health Science and Management Technology</p>
-</header><nav>
-  <a href="#about">About</a>
-  <a href="#leadership">Leadership</a>
-  <a href="#voting">Voting</a>
-  <a href="#contact">Contact</a>
-</nav><section id="about">
-  <h2>About the SUG</h2>
-  <p>The Student Union Government (SUG) was established in <strong>[Insert Year]</strong>.</p>
-</section><section id="leadership">
-  <h2>Leadership</h2>
-  <div class="card">President: [Name]</div>
-</section><!-- LOGIN PORTAL --><section id="login">
-  <h2>Student Login</h2>
-  <div class="card">
-    <input type="text" id="username" placeholder="Enter Matric Number">
-    <input type="password" id="password" placeholder="Enter Password">
-    <button class="btn" onclick="login()">Login</button>
-    <p id="loginMsg"></p>
-  </div>
-</section><!-- VOTING SYSTEM --><section id="voting" class="hidden">
-  <h2>Voting Portal</h2>
-  <div class="card">
-    <p>Select your preferred candidate for SUG President:</p>
-    <input type="radio" name="vote" value="Candidate A"> Candidate A<br>
-    <input type="radio" name="vote" value="Candidate B"> Candidate B<br>
-    <input type="radio" name="vote" value="Candidate C"> Candidate C<br>
-    <button class="btn" onclick="submitVote()">Submit Vote</button>
-    <p id="voteMsg"></p>
-  </div>
-</section><section id="contact">
-  <h2>Contact</h2>
-  <p>Email: sug@school.com</p>
-</section><footer>
-  <p>&copy; 2026 SUG</p>
-</footer><script>
-  function login() {
-    const user = document.getElementById('username').value;
-    const pass = document.getElementById('password').value;
+<body>
 
-    if (user === "student" && pass === "1234") {
-      document.getElementById('loginMsg').innerText = "Login successful";
-      document.getElementById('voting').classList.remove('hidden');
-    } else {
-      document.getElementById('loginMsg').innerText = "Invalid login details";
-    }
-  }
+    <header>
+        <div class="logo">Lamech Portfolio</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#leadership">Leadership</a>
+        </nav>
+    </header>
 
-  function submitVote() {
-    const votes = document.getElementsByName('vote');
-    let selected = null;
+    <main>
+        <section class="profile-container" id="about">
+            <div class="bio-content">
+                <h1>NGEREBO LAMECH DIMKPA</h1>
+                <div class="title-badge">Provost-1 | Student Leader | MIT Student</div>
+                
+                <p>Welcome! I am a passionate student leader, dedicated to community growth, student welfare, and excellence in the healthcare sector. I spent my formative years growing up in Borikiri, Port Harcourt, Rivers State—a community that shaped my drive, values, and leadership ambitions.</p>
+                
+                <p>Currently, I am pursuing my professional training in the field of healthcare, balancing academic excellence with active, impactful roles in student governance to drive positive institutional change.</p>
+            </div>
+            
+            <div class="image-wrapper">
+                <!-- Linked directly to your uploaded GitHub repository file -->
+                <img src="file_0000000021e4724391c24ccccd4c8aa8a.png" alt="Ngerebo Lamech Dimkpa">
+            </div>
+        </section>
 
-    for (let v of votes) {
-      if (v.checked) {
-        selected = v.value;
-      }
-    }
+        <section class="grid-section">
+            <div class="card" id="education">
+                <h3>Educational Background</h3>
+                <ul>
+                    <li><strong>Rivers State College Of Health Science And Management Technology</strong><br>Currently studying in the Department of Medical Imaging Technology (MIT).</li>
+                    <li><strong>Government Secondary School, Borikiri, Port Harcourt</strong><br>Completed senior academic cycles, successfully obtaining my JSCE and SSCE qualifications.</li>
+                    <li><strong>Community Secondary School, Rumuolumeni, Obio/Akpor</strong><br>Attended foundational junior secondary school studies up until JSS2 (2018).</li>
+                </ul>
+            </div>
 
-    if (selected) {
-      document.getElementById('voteMsg').innerText = "You voted for " + selected;
-    } else {
-      document.getElementById('voteMsg').innerText = "Please select a candidate";
-    }
-  }
-</script></body>
-</html>
+            <div class="card" id="leadership">
+                <h3>Leadership & Governance</h3>
+                <ul>
+                    <li><strong>Provost-1</strong><br>Serving actively within the Student Union Government (SUG) of the Rivers State College Of Health Science And Management Technology.</li>
+                    <li><strong>Student Leadership</strong><br>Enforcing discipline, advocating for student welfare, and coordinating governance structures across campus departments.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ngerebo Lamech Dimkpa. All Rights Reserved.</p>
+    </footer>
+
+</body>
+  </html>
+  
