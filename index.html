@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngerebo Lamech Dimkpa | Home</title>
-    <style>
+    <title>Ngerebo Lamech Dimkpa | Hub</title>
+        <style>
         :root {
             --primary: #0a192f;
             --secondary: #172a45;
@@ -47,22 +47,34 @@
             text-transform: uppercase;
         }
 
-        nav a {
+        nav button {
+            background: none;
+            border: none;
             color: var(--text-main);
-            text-decoration: none;
             margin-left: 20px;
             font-size: 0.9rem;
+            cursor: pointer;
+            padding: 5px 10px;
             transition: color 0.3s;
         }
 
-        nav a:hover, nav a.active {
+        nav button:hover, nav button.active {
             color: var(--accent);
+            border-bottom: 2px solid var(--accent);
         }
 
         main {
             max-width: 1100px;
             margin: 140px auto 60px auto;
             padding: 0 20px;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
         }
 
         .profile-container {
@@ -120,6 +132,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .navigation-grid {
@@ -140,10 +153,8 @@
             padding: 40px 30px;
             border-radius: 8px;
             border-top: 4px solid var(--accent);
-            text-decoration: none;
-            color: var(--text-main);
+            cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
-            display: block;
         }
 
         .nav-card:hover {
@@ -169,130 +180,9 @@
             font-weight: bold;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            margin-top: 80px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">Lamech Portfolio</div>
-        <nav>
-            <a href="index.html" class="active">Home</a>
-            <a href="education.html">Education</a>
-            <a href="leadership.html">Leadership</a>
-        </nav>
-    </header>
-
-    <main>
-        <section class="profile-container">
-            <div class="bio-content">
-                <h1>NGEREBO LAMECH DIMKPA</h1>
-                <div class="title-badge">Provost-1 | Content Creator | Rising Musician</div>
-                
-                <p>Welcome to my official digital hub! I am a passionate student leader, content creator, and rising musical artist dedicated to institutional excellence, community growth, and creative development.</p>
-                
-                <p>I grew up in Borikiri, Port Harcourt, Rivers State—a community that heavily shaped my creative drive, leadership mindset, and ambitions. Explore my dedicated spaces below to learn more about my academic path and leadership journey.</p>
-            </div>
-            
-            <div class="image-wrapper">
-                <img src=".file_0000000021e4724391c24ccccd4c8aa8a.png8a.png" alt="Ngerebo Lamech Dimkpa">
-            </div>
-        </section>
-
-        <!-- Dynamic Navigation Links to New Pages -->
-        <section class="navigation-grid">
-            <a href="education.html" class="nav-card">
-                <h3>Academic & Education Background</h3>
-                <p>Learn about my medical imaging technology training, institutional history, and academic milestones from secondary school to college.</p>
-                <div class="arrow-link">Explore Schools &rarr;</div>
-            </a>
-
-            <a href="leadership.html" class="nav-card">
-                <h3>Leadership & Governance Roles</h3>
-                <p>Discover my active governance duties as Provost-1 within the Student Union Government and student community leadership roles.</p>
-                <div class="arrow-link">View Leadership Profiles &rarr;</div>
-            </a>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Ngerebo Lamech Dimkpa. All Rights Reserved.</p>
-    </footer>
-
-</body>
-    </html>
-                <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Education | Ngerebo Lamech Dimkpa</title>
-    <style>
-        :root {
-            --primary: #0a192f;
-            --secondary: #172a45;
-            --accent: #64ffda;
-            --text-main: #ccd6f6;
-            --text-muted: #8892b0;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background-color: var(--primary);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: rgba(10, 25, 47, 0.95);
-            padding: 20px 10%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: var(--accent);
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent);
-        }
-
-        main {
+        .inner-content {
             max-width: 800px;
-            margin: 140px auto 60px auto;
-            padding: 0 20px;
+            margin: 0 auto;
         }
 
         h2 {
@@ -303,7 +193,7 @@
             padding-bottom: 10px;
         }
 
-        .timeline-item {
+        .info-card {
             background-color: var(--secondary);
             padding: 30px;
             border-radius: 8px;
@@ -311,197 +201,50 @@
             margin-bottom: 25px;
         }
 
-        .timeline-item h3 {
+        .info-card h3 {
             color: var(--white);
             font-size: 1.3rem;
             margin-bottom: 5px;
         }
 
-        .timeline-item .sub {
+        .info-card .sub {
             color: var(--accent);
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 15px;
         }
 
-        .timeline-item p {
+        .info-card p {
             color: var(--text-muted);
         }
 
-        .btn-back {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            margin-top: 80px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">Lamech Portfolio</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="education.html" class="active">Education</a>
-            <a href="leadership.html">Leadership</a>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Educational Background</h2>
-
-        <div class="timeline-item">
-            <h3>Rivers State College Of Health Science And Management Technology</h3>
-            <div class="sub">Current Institution | College Level</div>
-            <p>Currently executing advanced clinical and technical training inside the specialized Department of Medical Imaging Technology (MIT). Acquiring extensive professional skills centered on diagnostic services and healthcare sciences.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Government Secondary School, Borikiri, Port Harcourt</h3>
-            <div class="sub">High School Level | Senior Cycle</div>
-            <p>Obtained both my Junior School Certificate Examination (JSCE) and Senior School Certificate Examination (SSCE) titles here. Cultivated early development traits within my native home neighborhood environment.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Community Secondary School, Rumuolumeni, Obio/Akpor</h3>
-            <div class="sub">High School Level | Junior Cycle (Up to 2018)</div>
-            <p>Attended secondary structural classes up until my JSS2 session in 2018 before transferring academic tracks to Borikiri to conclude my graduation path.</p>
-        </div>
-
-        <a href="index.html" class="btn-back">&larr; Back to Main Home</a>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Ngerebo Lamech Dimkpa. All Rights Reserved.</p>
-    </footer>
-
-</body>
-    </html>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leadership | Ngerebo Lamech Dimkpa</title>
-    <style>
-        :root {
-            --primary: #0a192f;
-            --secondary: #172a45;
-            --accent: #64ffda;
-            --text-main: #ccd6f6;
-            --text-muted: #8892b0;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background-color: var(--primary);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: rgba(10, 25, 47, 0.95);
-            padding: 20px 10%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: var(--accent);
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent);
-        }
-
-        main {
-            max-width: 800px;
-            margin: 140px auto 60px auto;
-            padding: 0 20px;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            color: var(--white);
-            margin-bottom: 30px;
-            border-bottom: 2px solid rgba(100, 255, 218, 0.1);
-            padding-bottom: 10px;
-        }
-
-        .leadership-card {
-            background-color: var(--secondary);
-            padding: 35px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
-            margin-bottom: 30px;
-        }
-
-        .leadership-card h3 {
-            color: var(--white);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .leadership-card ul {
+        .info-card ul {
             list-style: none;
         }
 
-        .leadership-card li {
+        .info-card li {
             color: var(--text-muted);
             margin-bottom: 15px;
             position: relative;
             padding-left: 25px;
-            font-size: 1.05rem;
         }
 
-        .leadership-card li::before {
+        .info-card li::before {
             content: "▹";
             position: absolute;
             left: 0;
             color: var(--accent);
-            font-weight: bold;
         }
 
         .btn-back {
             display: inline-block;
             margin-top: 20px;
             color: var(--accent);
-            text-decoration: none;
+            background: none;
+            border: none;
             font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         footer {
@@ -519,31 +262,113 @@
     <header>
         <div class="logo">Lamech Portfolio</div>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="education.html">Education</a>
-            <a href="leadership.html" class="active">Leadership</a>
+            <button onclick="showPage('home')" id="btn-home" class="active">Home</button>
+            <button onclick="showPage('education')" id="btn-education">Education</button>
+            <button onclick="showPage('leadership')" id="btn-leadership">Leadership</button>
         </nav>
     </header>
 
     <main>
-        <h2>Leadership & Governance Experience</h2>
+        
+        <!-- MAIN HOME SECTION -->
+        <section id="page-home" class="page-section active">
+            <div class="profile-container">
+                <div class="bio-content">
+                    <h1>NGEREBO LAMECH DIMKPA</h1>
+                    <div class="title-badge">Provost-1 | Content Creator | Rising Musician</div>
+                    
+                    <p>Welcome! I am a passionate student leader, content creator, and rising musical artist dedicated to community advancement and academic distinction.</p>
+                    
+                    <p>I grew up in Borikiri, Port Harcourt, Rivers State—a community that heavily shaped my creative mindset, drive, and ambitions. When I am not executing governance roles or studying medical imaging technology, I pour my focus into producing digital media content and writing original music.</p>
+                </div>
+                
+                <div class="image-wrapper">
+                    <!-- EXACT FIXED LINK TO YOUR FILES -->
+                    <img src="./file_0000000021e4724391c24ccccd4c8aa8a.png8a.png" alt="Ngerebo Lamech Dimkpa">
+                </div>
+            </div>
 
-        <div class="leadership-card">
-            <h3>Student Union Government (SUG)</h3>
-            <ul>
-                <li><strong>Provost-1 Designation:</strong> Serving prominently as an executive officer to ensure operational harmony, compliance, and strict code adherence throughout institutional functions.</li>
-                <li><strong>Student Advocacy:</strong> Spearheading structured communication between executive campus administrators and student constituents to address wellness programs and facility development.</li>
-                <li><strong>Institutional Engagement:</strong> Spearheading cross-departmental coordination initiatives to boost structural leadership performance within the Rivers State College of Health Science and Management Technology community.</li>
-            </ul>
-        </div>
+            <div class="navigation-grid">
+                <div class="nav-card" onclick="showPage('education')">
+                    <h3>Academic & Education Background</h3>
+                    <p>Learn about my medical imaging training and academic milestones from secondary school to college.</p>
+                    <div class="arrow-link">Explore Schools &rarr;</div>
+                </div>
 
-        <a href="index.html" class="btn-back">&larr; Back to Main Home</a>
+                <div class="nav-card" onclick="showPage('leadership')">
+                    <h3>Leadership & Governance Roles</h3>
+                    <p>Discover my active executive duties as Provost-1 within the Student Union Government.</p>
+                    <div class="arrow-link">View Leadership Profiles &rarr;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SUB-PAGE SECTION: EDUCATION -->
+        <section id="page-education" class="page-section">
+            <div class="inner-content">
+                <h2>Educational Background</h2>
+
+                <div class="info-card">
+                    <h3>Rivers State College Of Health Science And Management Technology</h3>
+                    <div class="sub">Current Institution | Department of Medical Imaging Technology</div>
+                    <p>Acquiring technical clinical competence centered on diagnostic imaging, radiological sciences, and institutional medical health services.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Government Secondary School, Borikiri, Port Harcourt</h3>
+                    <div class="sub">High School Level | JSCE & SSCE Qualifications</div>
+                    <p>Completed my secondary cycles here, obtaining both major qualification profiles right inside my native upbringing neighborhood layout.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Community Secondary School, Rumuolumeni, Obio/Akpor</h3>
+                    <div class="sub">High School Level | Junior Track (Up to 2018)</div>
+                    <p>Attended early structural academic sessions up until my JSS2 period in 2018 before modifying school frameworks to Borikiri.</p>
+                </div>
+
+                <button class="btn-back" onclick="showPage('home')">&larr; Back to Main Home</button>
+            </div>
+        </section>
+
+        <!-- SUB-PAGE SECTION: LEADERSHIP -->
+        <section id="page-leadership" class="page-section">
+            <div class="inner-content">
+                <h2>Leadership & Governance Experience</h2>
+
+                <div class="info-card">
+                    <h3>Student Union Government (SUG)</h3>
+                    <ul>
+                        <li><strong>Provost-1 Appointment:</strong> Managing executive oversight structures to enforce campus order, compliance, and procedural balance efficiently.</li>
+                        <li><strong>Student Welfare Advocacy:</strong> Negotiating and presenting critical community-driven interests between administrative executives and the student network.</li>
+                    </ul>
+                </div>
+
+                <button class="btn-back" onclick="showPage('home')">&larr; Back to Main Home</button>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <p>&copy; 2026 Ngerebo Lamech Dimkpa. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('nav button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById('page-' + pageId).classList.add('active');
+            if(document.getElementById('btn-' + pageId)) {
+                document.getElementById('btn-' + pageId).classList.add('active');
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 </body>
-            </html>
-            
+    </html>
+    
